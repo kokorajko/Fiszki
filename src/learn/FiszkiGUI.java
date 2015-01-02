@@ -27,17 +27,98 @@ public class FiszkiGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        buttonSave = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        questionArea = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        answerArea = new javax.swing.JTextArea();
+        buttonNext = new javax.swing.JButton();
+        menuBar = new javax.swing.JMenuBar();
+        menu1 = new javax.swing.JMenu();
+        menu2 = new javax.swing.JMenu();
+        menuNauka = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        menuTworyenie = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Fiszki");
+
+        jLabel1.setText("Pytanie:");
+
+        jLabel2.setText("Odpowiedź:");
+
+        buttonSave.setText("Zapisz");
+
+        questionArea.setColumns(20);
+        questionArea.setLineWrap(true);
+        questionArea.setRows(5);
+        jScrollPane1.setViewportView(questionArea);
+
+        answerArea.setColumns(20);
+        answerArea.setLineWrap(true);
+        answerArea.setRows(5);
+        jScrollPane2.setViewportView(answerArea);
+
+        buttonNext.setText("Następny");
+
+        menu1.setMnemonic('o');
+        menu1.setText("Opcje");
+
+        menu2.setText("Tryb programu");
+
+        menuNauka.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        menuNauka.setText("Nauka");
+        menu2.add(menuNauka);
+        menu2.add(jSeparator1);
+
+        menuTworyenie.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        menuTworyenie.setText("Tworzenie");
+        menu2.add(menuTworyenie);
+
+        menu1.add(menu2);
+
+        menuBar.add(menu1);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonSave)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonNext)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonSave)
+                    .addComponent(buttonNext))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +160,19 @@ public class FiszkiGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea answerArea;
+    private javax.swing.JButton buttonNext;
+    private javax.swing.JButton buttonSave;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenu menu1;
+    private javax.swing.JMenu menu2;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem menuNauka;
+    private javax.swing.JMenuItem menuTworyenie;
+    private javax.swing.JTextArea questionArea;
     // End of variables declaration//GEN-END:variables
 }
