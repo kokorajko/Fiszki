@@ -117,12 +117,30 @@ public class FiszkiGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSave)
-                    .addComponent(buttonNext))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addComponent(buttonNext)
+                    .addComponent(buttonAnswer))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuNaukaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNaukaActionPerformed
+        answerArea.setEditable(false);
+        questionArea.setEditable(false);
+        buttonSave.setEnabled(false);
+        buttonNext.setEnabled(true);
+        buttonAnswer.setEnabled(true);
+    }//GEN-LAST:event_menuNaukaActionPerformed
+
+    private void menuTworzenieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTworzenieActionPerformed
+        answerArea.setEditable(true);
+        questionArea.setEditable(true);
+        buttonSave.setEnabled(true);
+        buttonNext.setEnabled(false);
+        buttonAnswer.setEnabled(false);
+        
+    }//GEN-LAST:event_menuTworzenieActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,7 +190,7 @@ public class FiszkiGUI extends javax.swing.JFrame {
     private javax.swing.JMenu menu2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuNauka;
-    private javax.swing.JMenuItem menuTworyenie;
+    private javax.swing.JMenuItem menuTworzenie;
     private javax.swing.JTextArea questionArea;
     // End of variables declaration//GEN-END:variables
 }

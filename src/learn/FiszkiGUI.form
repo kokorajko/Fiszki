@@ -155,10 +155,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="buttonNext">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nast&#x119;pny"/>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>
