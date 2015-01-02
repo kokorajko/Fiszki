@@ -5,6 +5,11 @@
  */
 package learn;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
+
 /**
  *
  * @author Michu
@@ -17,6 +22,8 @@ public class FiszkiGUI extends javax.swing.JFrame {
     public FiszkiGUI() {
         initComponents();
     }
+    
+    FiszkiWork work = new FiszkiWork();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,10 +58,21 @@ public class FiszkiGUI extends javax.swing.JFrame {
         jLabel2.setText("Odpowiedź:");
 
         buttonSave.setText("Zapisz");
+        buttonSave.setEnabled(false);
 
         buttonNext.setText("Następny");
+        buttonNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNextActionPerformed(evt);
+            }
+        });
 
         buttonAnswer.setText("Pokaż odpowiedź");
+        buttonAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAnswerActionPerformed(evt);
+            }
+        });
 
         questionArea.setColumns(20);
         questionArea.setLineWrap(true);
@@ -156,6 +174,37 @@ public class FiszkiGUI extends javax.swing.JFrame {
         buttonAnswer.setEnabled(false);
         
     }//GEN-LAST:event_menuTworzenieActionPerformed
+
+    private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
+        answerArea.setText(null);
+        ArrayList<String> list = new ArrayList();  
+        try {
+            File file = new File("C:\\Users\\Michu\\Documents\\NetBeansProjects\\Fiszki\\saved.txt");
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bFileReader = new BufferedReader(fileReader);
+            
+            String line = null;
+            
+            while ((line = bFileReader.readLine()) != null) {
+                list.add(line);
+            }
+            bFileReader.close();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        String randomLine = work.randomLine(list);
+        System.out.println(randomLine);
+        String question = work.question(randomLine);
+        work.setAnswer(work.answer(randomLine));
+        questionArea.setText(question);
+        
+    }//GEN-LAST:event_buttonNextActionPerformed
+
+    private void buttonAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnswerActionPerformed
+        answerArea.setText(work.getAnswer());
+    }//GEN-LAST:event_buttonAnswerActionPerformed
 
     /**
      * @param args the command line arguments

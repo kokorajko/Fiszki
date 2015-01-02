@@ -130,17 +130,24 @@
     <Component class="javax.swing.JButton" name="buttonSave">
       <Properties>
         <Property name="text" type="java.lang.String" value="Zapisz"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonNext">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nast&#x119;pny"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonNextActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonAnswer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Poka&#x17c; odpowied&#x17a;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAnswerActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
