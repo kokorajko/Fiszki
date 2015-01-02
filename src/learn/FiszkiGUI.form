@@ -22,16 +22,22 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Nauka"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuNaukaActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuTworyenie">
+                <MenuItem class="javax.swing.JMenuItem" name="menuTworzenie">
                   <Properties>
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                       <KeyStroke key="Ctrl+T"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Tworzenie"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuTworzenieActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -65,9 +71,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="380" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -77,12 +83,14 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="buttonSave" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="buttonNext" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonSave" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="buttonAnswer" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                      <Component id="buttonNext" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,8 +109,9 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonSave" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonNext" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonAnswer" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -121,6 +130,16 @@
     <Component class="javax.swing.JButton" name="buttonSave">
       <Properties>
         <Property name="text" type="java.lang.String" value="Zapisz"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonNext">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nast&#x119;pny"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonAnswer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Poka&#x17c; odpowied&#x17a;"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
