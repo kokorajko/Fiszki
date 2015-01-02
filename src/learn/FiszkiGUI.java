@@ -30,18 +30,17 @@ public class FiszkiGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         buttonSave = new javax.swing.JButton();
-        buttonNext = new javax.swing.JButton();
-        buttonAnswer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         questionArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         answerArea = new javax.swing.JTextArea();
+        buttonNext = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menu1 = new javax.swing.JMenu();
         menu2 = new javax.swing.JMenu();
         menuNauka = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        menuTworzenie = new javax.swing.JMenuItem();
+        menuTworyenie = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fiszki");
@@ -51,10 +50,6 @@ public class FiszkiGUI extends javax.swing.JFrame {
         jLabel2.setText("Odpowiedź:");
 
         buttonSave.setText("Zapisz");
-
-        buttonNext.setText("Następny");
-
-        buttonAnswer.setText("Pokaż odpowiedź");
 
         questionArea.setColumns(20);
         questionArea.setLineWrap(true);
@@ -66,6 +61,8 @@ public class FiszkiGUI extends javax.swing.JFrame {
         answerArea.setRows(5);
         jScrollPane2.setViewportView(answerArea);
 
+        buttonNext.setText("Następny");
+
         menu1.setMnemonic('o');
         menu1.setText("Opcje");
 
@@ -73,22 +70,12 @@ public class FiszkiGUI extends javax.swing.JFrame {
 
         menuNauka.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         menuNauka.setText("Nauka");
-        menuNauka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuNaukaActionPerformed(evt);
-            }
-        });
         menu2.add(menuNauka);
         menu2.add(jSeparator1);
 
-        menuTworzenie.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
-        menuTworzenie.setText("Tworzenie");
-        menuTworzenie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuTworzenieActionPerformed(evt);
-            }
-        });
-        menu2.add(menuTworzenie);
+        menuTworyenie.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        menuTworyenie.setText("Tworzenie");
+        menu2.add(menuTworyenie);
 
         menu1.add(menu2);
 
@@ -103,7 +90,7 @@ public class FiszkiGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,11 +98,9 @@ public class FiszkiGUI extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(55, 55, 55)
-                        .addComponent(buttonAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(58, 58, 58)
-                        .addComponent(buttonNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(buttonSave)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonNext)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -194,7 +179,6 @@ public class FiszkiGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea answerArea;
-    private javax.swing.JButton buttonAnswer;
     private javax.swing.JButton buttonNext;
     private javax.swing.JButton buttonSave;
     private javax.swing.JLabel jLabel1;
