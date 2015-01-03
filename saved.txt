@@ -1,11 +1,4 @@
-bread##chleb
-knife##noz
-clock##zegar
-mouse##mysz
-book##ksiazka
-apple##jablko
-horse##kon
-life##zycie
-calculator##kalkulator
-bucket##wiadro
+﻿pen##długopis
 keyboard##klawiatura
+bottle##butelka
+TV##telewizor

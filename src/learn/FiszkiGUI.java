@@ -6,8 +6,12 @@
 package learn;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +26,7 @@ public class FiszkiGUI extends javax.swing.JFrame {
     public FiszkiGUI() {
         initComponents();
     }
-    
+
     FiszkiWork work = new FiszkiWork();
 
     /**
@@ -59,6 +63,11 @@ public class FiszkiGUI extends javax.swing.JFrame {
 
         buttonSave.setText("Zapisz");
         buttonSave.setEnabled(false);
+        buttonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSaveActionPerformed(evt);
+            }
+        });
 
         buttonNext.setText("Następny");
         buttonNext.addActionListener(new java.awt.event.ActionListener() {
@@ -172,39 +181,57 @@ public class FiszkiGUI extends javax.swing.JFrame {
         buttonSave.setEnabled(true);
         buttonNext.setEnabled(false);
         buttonAnswer.setEnabled(false);
-        
+
     }//GEN-LAST:event_menuTworzenieActionPerformed
 
     private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
         answerArea.setText(null);
-        ArrayList<String> list = new ArrayList();  
+        ArrayList<String> list = new ArrayList();
         try {
             File file = new File("C:\\Users\\Michu\\Documents\\NetBeansProjects\\Fiszki\\saved.txt");
             FileReader fileReader = new FileReader(file);
             BufferedReader bFileReader = new BufferedReader(fileReader);
-            
+
             String line = null;
-            
+
             while ((line = bFileReader.readLine()) != null) {
                 list.add(line);
             }
             bFileReader.close();
-            
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
         String randomLine = work.randomLine(list);
         System.out.println(randomLine);
         String question = work.question(randomLine);
         work.setAnswer(work.answer(randomLine));
         questionArea.setText(question);
-        
+
     }//GEN-LAST:event_buttonNextActionPerformed
 
     private void buttonAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnswerActionPerformed
         answerArea.setText(work.getAnswer());
     }//GEN-LAST:event_buttonAnswerActionPerformed
+
+    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
+        String question = questionArea.getText();
+        String answer = answerArea.getText();
+        String last = work.produceFinalString(question, answer);
+
+        try {
+            BufferedWriter fWrite = new BufferedWriter(new FileWriter("C:\\Users\\Michu\\Documents\\NetBeansProjects\\Fiszki\\saved.txt", true));
+            fWrite.newLine();
+            fWrite.write(last);
+            fWrite.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        questionArea.setText(null);
+        answerArea.setText(null);
+    }//GEN-LAST:event_buttonSaveActionPerformed
 
     /**
      * @param args the command line arguments
