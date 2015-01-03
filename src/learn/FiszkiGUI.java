@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -37,6 +37,8 @@ public class FiszkiGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
+        fileChooser2 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         buttonSave = new javax.swing.JButton();
@@ -47,11 +49,21 @@ public class FiszkiGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         answerArea = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
-        menu1 = new javax.swing.JMenu();
+        menuFile = new javax.swing.JMenu();
+        menuLoad = new javax.swing.JMenuItem();
+        menuOption = new javax.swing.JMenu();
         menu2 = new javax.swing.JMenu();
         menuNauka = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         menuTworzenie = new javax.swing.JMenuItem();
+        menuInstrukcje = new javax.swing.JMenuItem();
+
+        fileChooser.setDialogType(javax.swing.JFileChooser.CUSTOM_DIALOG);
+        fileChooser.setDialogTitle("This is my open dialog");
+        fileChooser.setFileFilter(new MyCustomFilter());
+
+        fileChooser2.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        fileChooser2.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fiszki");
@@ -69,6 +81,7 @@ public class FiszkiGUI extends javax.swing.JFrame {
         });
 
         buttonNext.setText("Następny");
+        buttonNext.setEnabled(false);
         buttonNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonNextActionPerformed(evt);
@@ -76,6 +89,7 @@ public class FiszkiGUI extends javax.swing.JFrame {
         });
 
         buttonAnswer.setText("Pokaż odpowiedź");
+        buttonAnswer.setEnabled(false);
         buttonAnswer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAnswerActionPerformed(evt);
@@ -85,6 +99,7 @@ public class FiszkiGUI extends javax.swing.JFrame {
         questionArea.setColumns(20);
         questionArea.setLineWrap(true);
         questionArea.setRows(5);
+        questionArea.setText("Wczytaj plik lub przejdź do trybu \"Tworzenie\".");
         jScrollPane1.setViewportView(questionArea);
 
         answerArea.setColumns(20);
@@ -92,8 +107,20 @@ public class FiszkiGUI extends javax.swing.JFrame {
         answerArea.setRows(5);
         jScrollPane2.setViewportView(answerArea);
 
-        menu1.setMnemonic('o');
-        menu1.setText("Opcje");
+        menuFile.setText("Plik");
+
+        menuLoad.setText("Wczytaj");
+        menuLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLoadActionPerformed(evt);
+            }
+        });
+        menuFile.add(menuLoad);
+
+        menuBar.add(menuFile);
+
+        menuOption.setMnemonic('o');
+        menuOption.setText("Opcje");
 
         menu2.setText("Tryb programu");
 
@@ -116,9 +143,17 @@ public class FiszkiGUI extends javax.swing.JFrame {
         });
         menu2.add(menuTworzenie);
 
-        menu1.add(menu2);
+        menuOption.add(menu2);
 
-        menuBar.add(menu1);
+        menuInstrukcje.setText("Instrukcje");
+        menuInstrukcje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInstrukcjeActionPerformed(evt);
+            }
+        });
+        menuOption.add(menuInstrukcje);
+
+        menuBar.add(menuOption);
 
         setJMenuBar(menuBar);
 
@@ -175,38 +210,28 @@ public class FiszkiGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_menuNaukaActionPerformed
 
     private void menuTworzenieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTworzenieActionPerformed
+        questionArea.setText(null);
         answerArea.setEditable(true);
         questionArea.setEditable(true);
         buttonSave.setEnabled(true);
         buttonNext.setEnabled(false);
         buttonAnswer.setEnabled(false);
+        int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+
+            work.setSaveFilePath(file.getAbsolutePath());
+        }
+
 
     }//GEN-LAST:event_menuTworzenieActionPerformed
 
     private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
         answerArea.setText(null);
-        ArrayList<String> list = new ArrayList();
-        try {
-            File file = new File("C:\\Users\\Michu\\Documents\\NetBeansProjects\\Fiszki\\saved.txt");
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bFileReader = new BufferedReader(fileReader);
-
-            String line = null;
-
-            while ((line = bFileReader.readLine()) != null) {
-                list.add(line);
-            }
-            bFileReader.close();
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        String randomLine = work.randomLine(list);
+        String randomLine = work.randomLine(work.list);
         String question = work.question(randomLine);
         work.setAnswer(work.answer(randomLine));
         questionArea.setText(question);
-
     }//GEN-LAST:event_buttonNextActionPerformed
 
     private void buttonAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnswerActionPerformed
@@ -219,17 +244,52 @@ public class FiszkiGUI extends javax.swing.JFrame {
         String last = work.produceFinalString(question, answer);
 
         try {
-            BufferedWriter fWrite = new BufferedWriter(new FileWriter("C:\\Users\\Michu\\Documents\\NetBeansProjects\\Fiszki\\saved.txt", true));
+            BufferedWriter fWrite = new BufferedWriter(new FileWriter(work.getSaveFilePath(), true));
             fWrite.newLine();
             fWrite.write(last);
             fWrite.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
+
         questionArea.setText(null);
         answerArea.setText(null);
     }//GEN-LAST:event_buttonSaveActionPerformed
+
+    private void menuLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoadActionPerformed
+        int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try {
+                FileReader fileReader = new FileReader(file);
+                BufferedReader bFileReader = new BufferedReader(fileReader);
+
+                String line = null;
+
+                while ((line = bFileReader.readLine()) != null) {
+                    work.list.add(line);
+                }
+                bFileReader.close();
+                buttonAnswer.setEnabled(true);
+                buttonNext.setEnabled(true);
+                questionArea.setText(null);
+                String randomLine = work.randomLine(work.list);
+                String question = work.question(randomLine);
+                work.setAnswer(work.answer(randomLine));
+                questionArea.setText(question);
+            } catch (IOException ex) {
+                System.out.println("problem accessing file" + file.getAbsolutePath());
+            }
+        } else {
+            System.out.println("File access cancelled by user.");
+        }
+
+    }//GEN-LAST:event_menuLoadActionPerformed
+
+    private void menuInstrukcjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInstrukcjeActionPerformed
+        questionArea.setText("Aby rozpocząć pracę z programem, stwórz nowy plik tekstowy i nazwij go jak chcesz. następnie przejdź do odpowiedniego trybu. "
+                + "Jeśli chcesz dodawać rzeczy do pliku, przejdź do trybu Tworzenie.");
+    }//GEN-LAST:event_menuInstrukcjeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,15 +331,20 @@ public class FiszkiGUI extends javax.swing.JFrame {
     private javax.swing.JButton buttonAnswer;
     private javax.swing.JButton buttonNext;
     private javax.swing.JButton buttonSave;
+    private javax.swing.JFileChooser fileChooser;
+    private javax.swing.JFileChooser fileChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JMenu menu1;
     private javax.swing.JMenu menu2;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuFile;
+    private javax.swing.JMenuItem menuInstrukcje;
+    private javax.swing.JMenuItem menuLoad;
     private javax.swing.JMenuItem menuNauka;
+    private javax.swing.JMenu menuOption;
     private javax.swing.JMenuItem menuTworzenie;
     private javax.swing.JTextArea questionArea;
     // End of variables declaration//GEN-END:variables

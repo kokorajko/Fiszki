@@ -15,6 +15,17 @@ import java.util.ArrayList;
 public class FiszkiWork {
     
     private String answer = "";
+    private String saveFilePath;
+    
+    public void setSaveFilePath(String s) {
+        saveFilePath = s;
+    }
+    
+    public String getSaveFilePath() {
+        return saveFilePath;
+    }
+    
+    ArrayList<String> list = new ArrayList();
     
     public void setAnswer(String s) {
         answer = s;

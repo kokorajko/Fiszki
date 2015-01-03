@@ -2,3 +2,4 @@
 keyboard##klawiatura
 bottle##butelka
 TV##telewizor
+koko##jumbo
