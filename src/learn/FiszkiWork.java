@@ -40,4 +40,9 @@ public class FiszkiWork {
         String[] parts = unedited.split("##");
         return parts[1];
     }
+    
+    public String produceFinalString(String question, String answer) {
+        String last = question + "##" + answer;
+        return last;
+    }
 }
