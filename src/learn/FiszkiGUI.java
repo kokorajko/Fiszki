@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
 
 /**
@@ -204,7 +203,6 @@ public class FiszkiGUI extends javax.swing.JFrame {
         }
 
         String randomLine = work.randomLine(list);
-        System.out.println(randomLine);
         String question = work.question(randomLine);
         work.setAnswer(work.answer(randomLine));
         questionArea.setText(question);
